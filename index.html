@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -58,7 +58,7 @@
 <body>
 
   <!-- 🔐 LOGIN CHOFER -->
-  <div class="container" id="loginSection">
+  <div class="container">
     <h2>Ingreso Chofer</h2>
     <input type="email" id="email" placeholder="Correo electrónico" />
     <input type="password" id="password" placeholder="Contraseña" />
@@ -71,14 +71,30 @@
     </p>
   </div>
 
-  <!-- 🚚 PANEL DEL CHOFER -->
-  <div class="container" id="panelChofer" style="display: none;">
-    <h2>Panel de Chofer</h2>
-    <p id="datosChofer"></p>
-    <div id="viajesPendientes"></div>
-  </div>
+  <script type="module">
+    import { auth } from "./firebase-config.js";
+    import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  <script type="module" src="chofer.js"></script>
+    async function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!email || !password) {
+        alert("⚠️ Ingresá correo y contraseña.");
+        return;
+      }
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = "panelChofer.html"; // ✅ Redirección automática
+      } catch (error) {
+        alert("❌ Error al iniciar sesión: " + error.message);
+        console.error("Login error:", error.code, error.message);
+      }
+    }
+
+    window.login = login;
+  </script>
 </body>
 
 </html>

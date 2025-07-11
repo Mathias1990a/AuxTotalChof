@@ -12,19 +12,14 @@ async function login() {
 
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
+    console.log("✅ Login exitoso:", userCredential.user.uid);
 
-    // Mostrar panel del chofer
-    document.getElementById("loginSection").style.display = "none";
-    document.getElementById("panelChofer").style.display = "block";
-    document.getElementById("datosChofer").innerText = `Bienvenido, ${user.email}`;
-
-    console.log("✅ Login exitoso:", user.uid);
+    // 🔁 Redirigir al panel del chofer
+    window.location.href = "panelChofer.html";
   } catch (error) {
     console.error("❌ Error en login:", error.code, error.message);
     alert("❌ No se pudo iniciar sesión: " + error.message);
   }
 }
 
-// ⚠️ Esto permite que el HTML reconozca la función login()
 window.login = login;
