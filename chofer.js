@@ -15,7 +15,7 @@ async function login() {
     console.log("✅ Login exitoso:", userCredential.user.uid);
 
     // 🔁 Redirigir al panel del chofer
-    window.location.href = "panelChofer.html";
+    window.location.href = "/panelChofer.html";
   } catch (error) {
     console.error("❌ Error en login:", error.code, error.message);
     alert("❌ No se pudo iniciar sesión: " + error.message);
