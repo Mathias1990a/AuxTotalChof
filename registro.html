@@ -79,22 +79,12 @@
         patente: formData.get("patente"),
         toneladas: formData.get("toneladas"),
         carritos: formData.get("carritos"),
-        fecha_envio: new Date().toLocaleString(),
-
-        dni_frente: formData.get("dni_frente")?.name,
-        registro_frente: formData.get("registro_frente")?.name,
-        registro_dorso: formData.get("registro_dorso")?.name,
-        camion_frente: formData.get("camion_frente")?.name,
-        camion_izquierda: formData.get("camion_izquierda")?.name,
-        camion_derecha: formData.get("camion_derecha")?.name,
-        camion_trasera: formData.get("camion_trasera")?.name,
-        seguro: formData.get("seguro")?.name,
-        vtv: formData.get("vtv")?.name
+        fecha_envio: new Date().toLocaleString()
       };
 
       try {
         await emailjs.send("service_1k5ybpy", "template_sk6x56m", data);
-        alert("✅ Documentación enviada correctamente.\nEn caso de faltante, nos contactaremos por WhatsApp o al correo ingresado.");
+        alert("✅ Solicitud enviada correctamente.\n📲 Próximo paso: nuestro equipo se comunicará por WhatsApp al número ingresado para solicitar las imágenes necesarias que acrediten tu identidad, el vehículo y los documentos correspondientes para habilitar tu cuenta.\n\n🔔 Es muy importante que hayas ingresado correctamente tu número de teléfono para que podamos avanzar sin demoras.");
         form.reset();
       } catch (error) {
         alert("❌ Error al enviar: " + error.text);
@@ -127,36 +117,35 @@
       <option value="No">No</option>
     </select>
 
-    <label for="dni_frente">DNI frente:</label>
-    <input type="file" name="dni_frente" id="dni_frente" title="Subí el frente del DNI" required />
+    <!-- Archivos que serán requeridos vía WhatsApp -->
+    <label for="dni_frente">INE/IDN frente:</label>
+    <input type="file" id="dni_frente" name="dni_frente" title="Subí el frente del documento de identidad" required />
 
     <label for="registro_frente">Registro frente:</label>
-    <input type="file" name="registro_frente" id="registro_frente" title="Subí el frente del registro" required />
-
-    <label for="registro_dorso">Registro dorso:</label>
-    <input type="file" name="registro_dorso" id="registro_dorso" title="Subí el dorso del registro" required />
-
-    <label for="camion_frente">Camión frente:</label>
-    <input type="file" name="camion_frente" id="camion_frente" title="Subí foto del frente del camión" required />
-
-    <label for="camion_izquierda">Camión lateral izquierda:</label>
-    <input type="file" name="camion_izquierda" id="camion_izquierda" title="Subí lateral izquierda del camión"
+    <input type="file" id="registro_frente" name="registro_frente" title="Subí el frente del registro vehicular"
       required />
 
-    <label for="camion_derecha">Camión lateral derecha:</label>
-    <input type="file" name="camion_derecha" id="camion_derecha" title="Subí lateral derecha del camión" required />
+    <label for="registro_dorso">Registro dorso:</label>
+    <input type="file" id="registro_dorso" name="registro_dorso" title="Subí el dorso del registro vehicular"
+      required />
 
-    <label for="camion_trasera">Camión trasera:</label>
-    <input type="file" name="camion_trasera" id="camion_trasera" title="Subí parte trasera del camión" required />
+    <label for="licencia_frente">Licencia de conducir frente:</label>
+    <input type="file" id="licencia_frente" name="licencia_frente" title="Foto frente de la licencia de conducir"
+      required />
 
-    <label for="seguro">Seguro:</label>
-    <input type="file" name="seguro" id="seguro" title="Subí imagen de la póliza de seguro" required />
+    <label for="licencia_dorso">Licencia de conducir dorso:</label>
+    <input type="file" id="licencia_dorso" name="licencia_dorso" title="Foto dorso de la licencia de conducir"
+      required />
 
-    <label for="vtv">VTV:</label>
-    <input type="file" name="vtv" id="vtv" title="Subí comprobante de VTV" required />
+    <label for="camion_derecha">Camión lateral derecho:</label>
+    <input type="file" id="camion_derecha" name="camion_derecha" title="Foto lateral derecha del camión" required />
 
-    <button type="submit">Enviar documentación</button>
-    <div class="note">Una vez aprobada la cuenta, recibirás usuario y contraseña para iniciar sesión. 📬</div>
+    <label for="camion_izquierda">Camión lateral izquierdo:</label>
+    <input type="file" id="camion_izquierda" name="camion_izquierda" title="Foto lateral izquierda del camión"
+      required />
+
+    <button type="submit">Enviar solicitud</button>
+    <div class="note">No se crea la cuenta automáticamente. 📲 Vas a ser contactado para continuar con el proceso.</div>
   </form>
 
 </body>
