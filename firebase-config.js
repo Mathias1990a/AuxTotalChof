@@ -9,7 +9,7 @@ const firebaseConfig = {
     projectId: "grua-chofer",
     storageBucket: "grua-chofer.appspot.com",
     messagingSenderId: "370248888486",
-    appId: "1:370248888486:web" // Puedes completarlo si tenés el ID completo
+    appId: "1:370248888486:web:8e1d2ba30f0b5d59f94467" // Puedes completarlo si tenés el ID completo
 };
 
 const app = initializeApp(firebaseConfig);
