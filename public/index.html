@@ -86,7 +86,7 @@
 
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = "panelChofer.html"; // ✅ Redirección automática
+        window.location.href = "/panelChofer.html"; // ✅ Redirección automática
       } catch (error) {
         alert("❌ Error al iniciar sesión: " + error.message);
         console.error("Login error:", error.code, error.message);
