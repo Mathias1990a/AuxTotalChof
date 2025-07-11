@@ -19,7 +19,7 @@
     }
 
     form {
-      max-width: 500px;
+      max-width: 520px;
       margin: auto;
       background: white;
       padding: 25px;
@@ -52,14 +52,16 @@
     }
 
     .note {
-      font-size: 0.9rem;
-      color: #555;
-      text-align: center;
-      margin-top: 15px;
+      font-size: 0.95rem;
+      color: #333;
+      margin-top: 20px;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #cc0000;
     }
   </style>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
     emailjs.init("7rMV2FRY7iVFP77mA");
 
@@ -117,35 +119,27 @@
       <option value="No">No</option>
     </select>
 
-    <!-- Archivos que serán requeridos vía WhatsApp -->
-    <label for="dni_frente">INE/IDN frente:</label>
-    <input type="file" id="dni_frente" name="dni_frente" title="Subí el frente del documento de identidad" required />
-
-    <label for="registro_frente">Registro frente:</label>
-    <input type="file" id="registro_frente" name="registro_frente" title="Subí el frente del registro vehicular"
-      required />
-
-    <label for="registro_dorso">Registro dorso:</label>
-    <input type="file" id="registro_dorso" name="registro_dorso" title="Subí el dorso del registro vehicular"
-      required />
-
-    <label for="licencia_frente">Licencia de conducir frente:</label>
-    <input type="file" id="licencia_frente" name="licencia_frente" title="Foto frente de la licencia de conducir"
-      required />
-
-    <label for="licencia_dorso">Licencia de conducir dorso:</label>
-    <input type="file" id="licencia_dorso" name="licencia_dorso" title="Foto dorso de la licencia de conducir"
-      required />
-
-    <label for="camion_derecha">Camión lateral derecho:</label>
-    <input type="file" id="camion_derecha" name="camion_derecha" title="Foto lateral derecha del camión" required />
-
-    <label for="camion_izquierda">Camión lateral izquierdo:</label>
-    <input type="file" id="camion_izquierda" name="camion_izquierda" title="Foto lateral izquierda del camión"
-      required />
+    <div class="note">
+      <h3>📸 Documentación requerida</h3>
+      <p>Recordá que por WhatsApp se van a solicitar las siguientes imágenes:</p>
+      <ul>
+        <li>📄 Documento de identidad (frente)</li>
+        <li>📄 Registro vehicular (frente y dorso)</li>
+        <li>🚘 Licencia de conducir (frente y dorso)</li>
+        <li>🚚 Foto del camión frente, lateral izquierda, lateral derecha, trasera</li>
+        <li>📑 Póliza de seguro</li>
+        <li>🧾 Comprobante de VTV</li>
+      </ul>
+      <p style="margin-top: 12px;">
+        Nuestro equipo recibió tu solicitud. En breve <strong>nos pondremos en contacto por WhatsApp</strong> al número
+        ingresado para solicitar las imágenes necesarias que acrediten tu identidad, el vehículo y los documentos
+        correspondientes para habilitar tu cuenta. <br /><br />
+        🔔 <em>Es muy importante que hayas ingresado correctamente tu número de teléfono para que podamos avanzar sin
+          demoras.</em>
+      </p>
+    </div>
 
     <button type="submit">Enviar solicitud</button>
-    <div class="note">No se crea la cuenta automáticamente. 📲 Vas a ser contactado para continuar con el proceso.</div>
   </form>
 
 </body>
