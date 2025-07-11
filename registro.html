@@ -8,23 +8,26 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
     }
 
     h2 {
       color: #cc0000;
       text-align: center;
-      margin-bottom: 20px;
+      margin-top: 30px;
     }
 
     form {
       max-width: 520px;
-      margin: auto;
-      background: white;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.92);
       padding: 25px;
       border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
     }
 
     input,
@@ -60,6 +63,10 @@
       border-radius: 8px;
       border-left: 4px solid #cc0000;
     }
+
+    ul {
+      padding-left: 20px;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
@@ -92,6 +99,19 @@
         alert("❌ Error al enviar: " + error.text);
       }
     }
+
+    const fondos = Array.from({ length: 15 }, (_, i) => `assets/fondos/pancha${i + 1}.jpg`);
+    let index = 0;
+
+    function rotarFondo() {
+      document.body.style.backgroundImage = `url('${fondos[index]}')`;
+      index = (index + 1) % fondos.length;
+    }
+
+    window.onload = () => {
+      rotarFondo();
+      setInterval(rotarFondo, 4000); // cambia cada 4 segundos
+    };
   </script>
 </head>
 
@@ -126,7 +146,7 @@
         <li>📄 Documento de identidad (frente)</li>
         <li>📄 Registro vehicular (frente y dorso)</li>
         <li>🚘 Licencia de conducir (frente y dorso)</li>
-        <li>🚚 Foto del camión frente, lateral izquierda, lateral derecha, trasera</li>
+        <li>🚚 Camión: frente, lateral izquierda, lateral derecha, trasera</li>
         <li>📑 Póliza de seguro</li>
         <li>🧾 Comprobante de VTV</li>
       </ul>
