@@ -52,18 +52,26 @@
       color: #cc0000;
       text-decoration: underline;
     }
+
+    #loading {
+      display: none;
+      margin-top: 12px;
+      color: #cc0000;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 
 <body>
-
-  <!-- 🔐 LOGIN CHOFER -->
   <div class="container">
     <h2>Ingreso Chofer</h2>
     <input type="email" id="email" placeholder="Correo electrónico" />
     <input type="password" id="password" placeholder="Contraseña" />
     <br />
-    <button onclick="login()">Ingresar</button>
+    <button id="btnLogin" type="button">Ingresar</button>
+
+
+    <div id="loading">🔄 Procesando ingreso...</div>
 
     <p style="margin-top: 15px; font-size: 0.95rem;">
       ¿Aún no tenés cuenta?
@@ -75,25 +83,34 @@
     import { auth } from "./firebase-config.js";
     import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    async function login() {
+    const loginBtn = document.getElementById("btnLogin");
+    const loadingDiv = document.getElementById("loading");
+
+    loginBtn.addEventListener("click", async () => {
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
 
       if (!email || !password) {
-        alert("⚠️ Ingresá correo y contraseña.");
+        alert("⚠️ Por favor ingresá correo y contraseña.");
         return;
       }
 
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = "/panelChofer.html"; // ✅ Redirección automática
-      } catch (error) {
-        alert("❌ Error al iniciar sesión: " + error.message);
-        console.error("Login error:", error.code, error.message);
-      }
-    }
+      loginBtn.disabled = true;
+      loginBtn.innerText = "Ingresando...";
+      loadingDiv.style.display = "block";
 
-    window.login = login;
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        console.log("✅ Login exitoso:", userCredential.user.uid);
+        window.location.href = "/panelChofer.html";
+      } catch (error) {
+        console.error("❌ Error en login:", error.code, error.message);
+        alert("❌ No se pudo iniciar sesión: " + error.message);
+        loginBtn.disabled = false;
+        loginBtn.innerText = "Ingresar";
+        loadingDiv.style.display = "none";
+      }
+    });
   </script>
 </body>
 
