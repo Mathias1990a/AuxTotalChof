@@ -5,28 +5,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panel Chofer - AUXTOTAL</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     body {
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f5f5f5;
-      padding-top: 40px;
-      text-align: center;
     }
 
-    .panel {
-      max-width: 600px;
-      margin: auto;
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .estado {
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      color: white;
+      background-color: grey;
+    }
+
+    .ganancia {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #cc0000;
+    }
+
+    #map {
+      height: 220px;
+      width: 100%;
+    }
+
+    .viajes {
+      padding: 10px;
+    }
+
+    .viaje {
       background-color: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      margin-bottom: 10px;
+      padding: 12px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .acciones {
+      display: flex;
+      justify-content: space-around;
+      padding: 15px;
+      background-color: #fff;
+      position: sticky;
+      bottom: 0;
+      border-top: 1px solid #ddd;
     }
 
     button {
-      padding: 10px 18px;
-      margin: 10px;
       background-color: #cc0000;
       color: white;
+      padding: 10px 16px;
       border: none;
       border-radius: 6px;
       font-size: 1rem;
@@ -36,34 +76,30 @@
     button:hover {
       background-color: #a00000;
     }
-
-    .viaje {
-      border: 1px solid #ccc;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 6px;
-      text-align: left;
-    }
   </style>
 </head>
 
 <body>
 
-  <div class="panel">
-    <h2>Panel del Chofer</h2>
-    <p><strong>Nombre:</strong> <span id="nombreChofer">...</span></p>
-    <p><strong>Estado:</strong> <span id="estadoChofer">🔴</span></p>
-    <button id="botonEstado">Conectarse</button>
-    <p><strong>Ingresos acumulados:</strong> <span id="ingresosTotales">$0.00</span></p>
-    <p><strong>Ubicación:</strong> <span id="ubicacionChofer">--</span></p>
-    <button id="botonSOS">🚨 SOS</button>
+  <div class="panel-header">
+    <div id="estadoChofer" class="estado">🔴 Offline</div>
+    <div class="ganancia">Ganancia: <span id="ingresosTotales">$0.00</span></div>
+  </div>
 
-    <h3>Viajes disponibles</h3>
+  <div id="map"></div>
+
+  <div class="viajes">
+    <h3>📦 Viajes disponibles</h3>
     <div id="listaViajes"></div>
   </div>
 
-  <script type="module" src="/panelChofer.js"></script>
+  <div class="acciones">
+    <button id="botonEstado">Conectarse</button>
+    <button id="botonSOS">🚨 SOS</button>
+  </div>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="/panelChofer.js"></script>
 </body>
 
 </html>
