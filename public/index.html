@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AUXTOTAL Chofer</title>
-  <link rel="stylesheet" href="stylechofer.css" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -25,6 +24,7 @@
 
     h2 {
       color: #cc0000;
+      margin-bottom: 20px;
     }
 
     input,
@@ -35,6 +35,10 @@
       font-size: 1rem;
       border-radius: 6px;
       border: 1px solid #ccc;
+    }
+
+    input {
+      background-color: #f9f9f9;
     }
 
     button {
@@ -59,21 +63,25 @@
       color: #cc0000;
       font-size: 0.9rem;
     }
+
+    .mensajeRegistro {
+      margin-top: 15px;
+      font-size: 0.95rem;
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
     <h2>Ingreso Chofer</h2>
-    <input type="email" id="email" placeholder="Correo electrónico" />
-    <input type="password" id="password" placeholder="Contraseña" />
+    <input type="email" id="email" placeholder="Correo electrónico" autocomplete="off" />
+    <input type="password" id="password" placeholder="Contraseña" autocomplete="off" />
     <br />
     <button id="btnLogin" type="button">Ingresar</button>
 
-
     <div id="loading">🔄 Procesando ingreso...</div>
 
-    <p style="margin-top: 15px; font-size: 0.95rem;">
+    <p class="mensajeRegistro">
       ¿Aún no tenés cuenta?
       <a href="registro.html">Registrate acá</a>
     </p>
@@ -95,6 +103,7 @@
         return;
       }
 
+      console.log("Iniciando login...");
       loginBtn.disabled = true;
       loginBtn.innerText = "Ingresando...";
       loadingDiv.style.display = "block";
